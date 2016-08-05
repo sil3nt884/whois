@@ -30,6 +30,7 @@ public class Whois {
 		String data = null;
 		DatabaseReader reader = new DatabaseReader.Builder(database).build();
 		InetAddress ipAddress = InetAddress.getByName(addr);
+		System.out.println("IP "+ ipAddress.getHostAddress());
 		try {
 			CountryResponse response = reader.country(ipAddress);
 			response = reader.country(ipAddress);
@@ -37,9 +38,9 @@ public class Whois {
 			String region = response.getContinent().getName();
 			String code = country.getIsoCode();
 			wc.connect(server[findDataBase(region)]);
-			data = wc.query(addr);
+			data = wc.query(ipAddress.getHostAddress());
 			results.append("\n");
-			results.append("IP ADDRESS: " + addr);
+			results.append("IP ADDRESS: " + ipAddress.getHostAddress());
 			results.append("\n");
 			results.append("\n");
 			results.append(data);
